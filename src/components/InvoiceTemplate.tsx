@@ -38,8 +38,10 @@ const InvoiceTemplate = ({
   const invoiceRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = useReactToPrint({
-    content: () => invoiceRef.current,
     documentTitle: `Invoice-${orderNumber}`,
+    // Using the correct property for react-to-print
+    printable: invoiceRef.current,
+    onPrintCapture: () => invoiceRef.current,
   });
 
   return (
