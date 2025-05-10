@@ -1,9 +1,6 @@
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
-import { Button } from "@/components/ui/button";
+
 import { formatIndianPrice } from "@/data/products";
 import { CartItem } from "@/contexts/CartContext";
-import { Printer } from "lucide-react";
 
 interface InvoiceTemplateProps {
   orderNumber: string;
@@ -34,24 +31,9 @@ const InvoiceTemplate = ({
   total,
   customerDetails
 }: InvoiceTemplateProps) => {
-  const invoiceRef = useRef<HTMLDivElement>(null);
-
-  const handlePrint = useReactToPrint({
-    documentTitle: `Invoice-${orderNumber}`,
-    content: () => invoiceRef.current,
-  });
-
   return (
-    <div className="mb-8">
-      <Button 
-        onClick={handlePrint} 
-        className="mb-4 flex items-center gap-2"
-      >
-        <Printer className="w-4 h-4" />
-        Print Invoice
-      </Button>
-      
-      <div ref={invoiceRef} className="bg-white dark:bg-race-black p-6 rounded-lg shadow-sm border dark:border-race-darkgray max-w-4xl mx-auto">
+    <div className="mb-8">      
+      <div className="bg-white dark:bg-race-black p-6 rounded-lg shadow-sm border dark:border-race-darkgray max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start mb-8">
           <div>
             <h2 className="font-racing text-2xl text-race-red">SuperBikes</h2>
