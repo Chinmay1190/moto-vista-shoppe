@@ -1,4 +1,3 @@
-
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/ui/button";
@@ -39,9 +38,7 @@ const InvoiceTemplate = ({
 
   const handlePrint = useReactToPrint({
     documentTitle: `Invoice-${orderNumber}`,
-    // Using the correct property for react-to-print
-    printable: invoiceRef.current,
-    onPrintCapture: () => invoiceRef.current,
+    content: () => invoiceRef.current,
   });
 
   return (
